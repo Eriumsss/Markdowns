@@ -413,7 +413,7 @@ Adding a new capture point requires creating multiple interconnected objects tha
 
 #### 5. AI System (CRITICAL - Most Complex Component)
 
-**⚠️ WARNING**: AI system requires exact connection pattern matching existing conquest points. Simply creating AIGoal objects is NOT sufficient!
+** WARNING**: AI system requires exact connection pattern matching existing conquest points. Simply creating AIGoal objects is NOT sufficient!
 
 **Required AI Components:**
 1. **4 AIGoal Objects** (Attack/Defend for both teams)
@@ -1009,7 +1009,7 @@ Export to JSON:
 
 ## 10. CURRENT STATUS
 
-✅ **Implemented:**
+ **Implemented:**
 - BaseBlock structure
 - JSON export system
 - Menu-driven block creation
@@ -1292,7 +1292,7 @@ Specific Fields:          4,489 (across all types)
 ## 4. Transform Formula
 
 
-## 🎯 The Correct Formula
+##  The Correct Formula
 
 Transform values are calculated **relative to parent spawn_point**, NOT relative to chunks.
 
@@ -1308,7 +1308,7 @@ Where:
 
 ---
 
-## ✅ Verification Results
+##  Verification Results
 
 ### Test Case: GUID 1100044678
 
@@ -1344,7 +1344,7 @@ Where:
 
 ---
 
-## 📊 Detailed Calculation
+##  Detailed Calculation
 
 ### Input Data
 
@@ -1409,8 +1409,8 @@ Result: [0.9758, 0, -0.2198; 0, 1.0, 0; 0.2201, 0, 0.9758] ✓
 
 ### 1. NOT Chunk-Based
 
-❌ **Wrong:** Transform is NOT relative to 250×250 unit chunks
-✅ **Correct:** Transform is relative to parent spawn_point
+ **Wrong:** Transform is NOT relative to 250×250 unit chunks
+ **Correct:** Transform is relative to parent spawn_point
 
 ### 2. Hierarchical Coordinate System
 
@@ -1483,12 +1483,12 @@ float transform_y = offset_x * R_sp_inv[0][2] + offset_z * R_sp_inv[1][2] + offs
 
 ## 📋 Summary
 
-✅ **Transform is spawn_point-relative**
-✅ **NOT chunk-based (250×250 units)**
-✅ **Position: offset × R_sp^(-1)**
-✅ **Rotation: R_node × R_sp^(-1)**
-✅ **Verified with real data**
-✅ **Error < 0.01 (floating-point precision)**
+ **Transform is spawn_point-relative**
+ **NOT chunk-based (250×250 units)**
+ **Position: offset × R_sp^(-1)**
+ **Rotation: R_node × R_sp^(-1)**
+ **Verified with real data**
+ **Error < 0.01 (floating-point precision)**
 
 The Transform coordinate system is a sophisticated hierarchical system that maintains parent-child relationships through rotation-aware coordinate transformations.
 
@@ -1505,7 +1505,7 @@ The Delta Transform Calculator has been updated to ask for spawn_point's WorldTr
 
 ---
 
-## 🔄 What Changed
+##  What Changed
 
 ### Before (Old Workflow)
 ```
@@ -1516,7 +1516,7 @@ The Delta Transform Calculator has been updated to ask for spawn_point's WorldTr
 5. Calculate Transform
 ```
 
-### After (New Workflow) ✅
+### After (New Workflow) 
 ```
 1. Ask for spawn_point WorldTransform position (X, Z, Y)
 2. Ask for spawn_point rotation matrix (9 values)
@@ -1552,11 +1552,11 @@ The Delta Transform Calculator has been updated to ask for spawn_point's WorldTr
    Z position: [enter value]
    Y position: [enter value]
    ```
-7. Program calculates and displays Transform position ✅
+7. Program calculates and displays Transform position 
 
 **Output:**
 ```
-✅ Transform Calculated Successfully!
+ Transform Calculated Successfully!
 =====================================
 
 spawn_point Position: [115.032, 1.542, 94.689]
@@ -1565,7 +1565,7 @@ spawn_node WorldTransform Position: [101.157, 0.509, 103.647]
 
 Delta Position (offset): [-13.875, -1.033, 8.958]
 
-✅ Transform Position (Delta Transform): [-13.875, -1.033, 8.958]
+ Transform Position (Delta Transform): [-13.875, -1.033, 8.958]
 
 Use these values for Transform[12], Transform[13], Transform[14]
 ```
@@ -1579,7 +1579,7 @@ Use these values for Transform[12], Transform[13], Transform[14]
 
 ---
 
-## 🔧 Technical Details
+##  Technical Details
 
 ### What You Need to Provide
 
@@ -1608,7 +1608,7 @@ Where:
 
 ---
 
-## 📊 Example Usage
+##  Example Usage
 
 ### Example: Calculate Transform for GUID 1100038255
 
@@ -1632,7 +1632,7 @@ spawn_node WorldTransform position:
 
 **Output:**
 ```
-✅ Transform Calculated Successfully!
+ Transform Calculated Successfully!
 =====================================
 
 spawn_point Position: [115.032, 1.542, 94.689]
@@ -1641,16 +1641,16 @@ spawn_node WorldTransform Position: [101.157, 0.509, 103.647]
 
 Delta Position (offset): [-13.875, -1.033, 8.958]
 
-✅ Transform Position (Delta Transform): [-13.875, -1.033, 8.958]
+ Transform Position (Delta Transform): [-13.875, -1.033, 8.958]
 
 Use these values for Transform[12], Transform[13], Transform[14]
 ```
 
 ---
 
-## ✅ Compilation Status
+##  Compilation Status
 
-**Status**: ✅ SUCCESSFUL
+**Status**:  SUCCESSFUL
 
 ```
 Command: g++ -std=c++17 -fno-lto ZeroEnginePrototype.cpp input_utils.cpp menu_functions.cpp -o ZeroEnginePrototype.exe
@@ -1661,13 +1661,13 @@ Date: 2025-10-21
 
 ---
 
-## 🎯 Benefits of New Workflow
+##  Benefits of New Workflow
 
-✅ **No file path required** - Simpler user input
-✅ **Direct position entry** - Faster workflow
-✅ **No file lookups** - Eliminates file I/O errors
-✅ **More flexible** - Can calculate for any spawn_point
-✅ **Cleaner interface** - Fewer prompts and steps
+ **No file path required** - Simpler user input
+ **Direct position entry** - Faster workflow
+ **No file lookups** - Eliminates file I/O errors
+ **More flexible** - Can calculate for any spawn_point
+ **Cleaner interface** - Fewer prompts and steps
 
 ---
 
@@ -1720,7 +1720,7 @@ To use the Delta Transform Calculator, you need to extract spawn_point data from
 
 5. **Enter spawn_node position** (X, Z, Y)
 
-6. **View calculated Transform** ✅
+6. **View calculated Transform** 
 
 ---
 
@@ -1737,7 +1737,7 @@ To use the Delta Transform Calculator, you need to extract spawn_point data from
 
 The Delta Transform Calculator is now **simpler and faster** to use. It asks for spawn_point's WorldTransform position directly instead of requiring file lookups.
 
-**Status: ✅ READY TO USE**
+**Status:  READY TO USE**
 
 
 
@@ -1899,8 +1899,8 @@ After fixing, check:
 ## Problem Statement
 
 Your spawn_nodes have:
-- ✅ **Correct WorldTransform** (positions match game render)
-- ❌ **Incorrect Transform** (chunk-relative coordinates are wrong)
+-  **Correct WorldTransform** (positions match game render)
+-  **Incorrect Transform** (chunk-relative coordinates are wrong)
 
 ## Root Cause
 
@@ -2333,9 +2333,9 @@ FightWhenEnemyEncountered: true
 
 ## Status
 
-✅ **Implementation Complete**
-✅ **Code Compiles Successfully**
-✅ **Ready to Use**
+ **Implementation Complete**
+ **Code Compiles Successfully**
+ **Ready to Use**
 
 
 
@@ -2739,7 +2739,7 @@ Looking at your `ZeroEnginePrototype.cpp`, I can see you already have support fo
 - `light_embedded_blue_banner` - Blue banner lights
 - `light_embedded_neutral_player` - Neutral player lights
 
-### **🎯 Objectives & Control (10 types)**
+### ** Objectives & Control (10 types)**
 - `Objective` - Objectives
 - `ObjectiveLocator` - Objective locators
 - `CapturePoint` - Capture points
@@ -2822,7 +2822,7 @@ BaseBlock* myEffect = createBlockByType("Effect");
 
 ---
 
-## 🎯 **How to Add Truly Custom Blocks**
+##  **How to Add Truly Custom Blocks**
 
 ### **Step 1: Define Your Custom Block**
 Add to `Types.h`:
@@ -2909,10 +2909,10 @@ else if (type == "MyPowerUp") {
 
 ## 📋 **Summary**
 
-✅ **You already have 135+ block types ready to use!**
-✅ **For most needs, existing types will work perfectly**
-✅ **Only create custom blocks for truly unique functionality**
-✅ **Your engine is already very powerful and extensible**
+ **You already have 135+ block types ready to use!**
+ **For most needs, existing types will work perfectly**
+ **Only create custom blocks for truly unique functionality**
+ **Your engine is already very powerful and extensible**
 
 **Start by exploring the existing block types - you'll be surprised how much you can do with them!** 🎉
 
@@ -3031,24 +3031,24 @@ The script performs the following operations:
 ## Validation and Testing
 
 ### System Integration Checks
-- ✅ All GUIDs are unique and avoid conflicts
-- ✅ Parent-child relationships properly established
-- ✅ GameModeMask set to 2 for all objects
-- ✅ Layer ID consistent (7024332)
-- ✅ Team assignments correct (Red: 2, Blue: 1)
+-  All GUIDs are unique and avoid conflicts
+-  Parent-child relationships properly established
+-  GameModeMask set to 2 for all objects
+-  Layer ID consistent (7024332)
+-  Team assignments correct (Red: 2, Blue: 1)
 
 ### Functional Requirements
-- ✅ Capture mechanics match existing CP1 behavior
-- ✅ AI goals properly configured for both teams
-- ✅ Spawn system integrated with existing emitters
-- ✅ Event handling complete for all capture states
-- ✅ HUD/minimap integration through ToggleObjective
+-  Capture mechanics match existing CP1 behavior
+-  AI goals properly configured for both teams
+-  Spawn system integrated with existing emitters
+-  Event handling complete for all capture states
+-  HUD/minimap integration through ToggleObjective
 
 ### Conquest Mode Integration
-- ✅ Scoring system compatibility maintained
-- ✅ Team objective management
-- ✅ Proper conquest flow integration
-- ✅ Banner and visual feedback systems
+-  Scoring system compatibility maintained
+-  Team objective management
+-  Proper conquest flow integration
+-  Banner and visual feedback systems
 
 ## Next Steps
 
@@ -3072,10 +3072,10 @@ The new CP2 capture point is now fully integrated into the BlackGates conquest g
 ## 12. Corruption Report
 
 
-## 📊 Executive Summary
+##  Executive Summary
 
 **File:** `comparision/corruptedlevel.json`
-**Status:** ❌ CORRUPTED - File Truncation Detected
+**Status:**  CORRUPTED - File Truncation Detected
 **Severity:** 🔴 CRITICAL
 **Data Loss:** 62 objects (0.63%)
 **Recommendation:** Replace with working file
@@ -3103,12 +3103,12 @@ Lines per Object:       ~20 lines average
 Expected Line Loss:     62 × 20 = 1,240 lines
 Actual Line Loss:       1,233 lines
 Variance:               -7 lines (within margin)
-Conclusion:             ✅ Confirms 62 complete objects missing
+Conclusion:              Confirms 62 complete objects missing
 ```
 
 ---
 
-## 🎯 Root Cause Analysis
+##  Root Cause Analysis
 
 ### Truncation Pattern
 
@@ -3159,9 +3159,9 @@ The truncation occurred during spawn point/node writing.
 
 ---
 
-## 🔧 Verification Steps Performed
+##  Verification Steps Performed
 
-### ✅ Completed Checks
+###  Completed Checks
 
 1. **File Size Comparison**
    - Corrupted: 7.37 MB
@@ -3238,7 +3238,7 @@ The corrupted file is **not recoverable** without a backup or source data. The t
 # Part 2: Stronghold Multiplayer System
 
 
-**Status:** ✅ **SUCCESSFULLY RESTORED**  
+**Status:**  **SUCCESSFULLY RESTORED**  
 **Date Completed:** November 1, 2025  
 **Tools:** Ghidra, HxD Hex Editor, JPEXS Free Flash Decompiler
 
@@ -3263,17 +3263,17 @@ The Stronghold mode is a multiplayer lobby system in LOTR: Conquest that was hid
 ### Current Status
 
 **External Services (Non-Functional):**
-- ❌ GameSpy matchmaking (shutdown May 31, 2014)
-- ❌ EA online services (deprecated)
-- ❌ Authentication servers (unavailable)
+-  GameSpy matchmaking (shutdown May 31, 2014)
+-  EA online services (deprecated)
+-  Authentication servers (unavailable)
 
 **Internal Systems (Functional):**
-- ✅ Stronghold menu access restored
-- ✅ Lobby UI fully functional
-- ✅ Setup screens accessible
-- ✅ LAN mode potentially functional
-- ✅ GameManager system intact
-- ✅ Peer mesh networking operational
+-  Stronghold menu access restored
+-  Lobby UI fully functional
+-  Setup screens accessible
+-  LAN mode potentially functional
+-  GameManager system intact
+-  Peer mesh networking operational
 
 ---
 
@@ -3464,12 +3464,12 @@ NuSearchOwners         - Search content owners
 **Original Bytes:** `77 44` (JA 0x00726887)  
 **New Bytes:** `90 90` (NOP NOP)  
 **Purpose:** Bypass jump that would skip Stronghold string loading  
-**Status:** ✅ Applied
+**Status:**  Applied
 
 ### Patch #2: Connection Checks Bypass (5 locations)
 **Function:** FUN_00727a45 (Mode Selector Caller)  
 **Purpose:** Bypass connection validation checks  
-**Status:** ✅ Applied
+**Status:**  Applied
 
 | Address    | Original Bytes | New Bytes | Instruction |
 |------------|----------------|-----------|-------------|
@@ -3485,7 +3485,7 @@ NuSearchOwners         - Search content owners
 **Original Bytes:** `74 32` (JZ 0x007275d0)  
 **New Bytes:** `90 90` (NOP NOP)  
 **Purpose:** Bypass flag check that would skip Stronghold menu registration  
-**Status:** ✅ Applied
+**Status:**  Applied
 
 ### Patch #4: Prevent 0x445 Flag Set #1
 **Function:** FUN_0088b5dc  
@@ -3493,7 +3493,7 @@ NuSearchOwners         - Search content owners
 **Original Bytes:** `C6 82 45 04 00 00 01` (MOV byte ptr [EDX + 0x445], 0x1)  
 **New Bytes:** `C6 82 45 04 00 00 00` (MOV byte ptr [EDX + 0x445], 0x0)  
 **Purpose:** Prevent setting flag 0x445 to 1 (which blocks Stronghold)  
-**Status:** ✅ Applied
+**Status:**  Applied
 
 ### Patch #5: Prevent 0x445 Flag Set #2
 **Function:** FUN_008f941d  
@@ -3501,7 +3501,7 @@ NuSearchOwners         - Search content owners
 **Original Bytes:** `C6 80 45 04 00 00 01` (MOV byte ptr [EAX + 0x445], 0x1)  
 **New Bytes:** `C6 80 45 04 00 00 00` (MOV byte ptr [EAX + 0x445], 0x0)  
 **Purpose:** Prevent setting flag 0x445 to 1 in another location  
-**Status:** ✅ Applied
+**Status:**  Applied
 
 ### Patch #6: Bypass 0x445 Flag Check in Menu Builder
 **Function:** FUN_00727408 (Submenu Builder)  
@@ -3509,7 +3509,7 @@ NuSearchOwners         - Search content owners
 **Original Bytes:** `0F 85 F6 00 00 00` (JNZ 0x00727567)  
 **New Bytes:** `90 90 90 90 90 90` (6x NOP)  
 **Purpose:** Bypass check of flag 0x445 that would skip Stronghold menu item  
-**Status:** ✅ Applied
+**Status:**  Applied
 
 ### Patch #7: Prevent Conditional 0x445 Flag Set
 **Function:** FUN_008c8959  
@@ -3517,16 +3517,16 @@ NuSearchOwners         - Search content owners
 **Original Bytes:** `88 81 45 04 00 00` (MOV byte ptr [ECX + 0x445], AL)  
 **New Bytes:** `90 90 90 90 90 90` (6x NOP)  
 **Purpose:** Prevent conditional write to flag 0x445  
-**Status:** ✅ Applied
+**Status:**  Applied
 
-### Patch #8: Fix Mode Selector to Enable Stronghold ⭐ **CRITICAL**
+### Patch #8: Fix Mode Selector to Enable Stronghold  **CRITICAL**
 **Function:** FUN_008cd495 (Mode Initialization)  
 **Address:** 0x008cd4bd  
 **Original Bytes:** `C7 81 F0 03 00 00 01 00 00 00` (MOV dword ptr [ECX + 0x3f0], 0x1)  
 **New Bytes:** `C7 81 F0 03 00 00 02 00 00 00` (MOV dword ptr [ECX + 0x3f0], 0x2)  
 **Specific Change:** Byte at offset +6: `01` → `02`  
 **Purpose:** Change hardcoded mode from 1 (Instant Action) to 2 (Stronghold)  
-**Status:** ✅ Applied - **THIS WAS THE CRITICAL FIX**
+**Status:**  Applied - **THIS WAS THE CRITICAL FIX**
 
 ---
 
@@ -3591,7 +3591,7 @@ Value at [ESI + 0x3f0]:
 
 **Patches Applied:** Patch #3 at 0x0072759c, Patch #6 at 0x0072746b
 
-#### FUN_008cd495 - Mode Initialization ⭐ **CRITICAL**
+#### FUN_008cd495 - Mode Initialization  **CRITICAL**
 **Address:** 0x008cd495
 **Purpose:** Initializes game mode based on [ESI + 0x8] selector value
 
@@ -3802,14 +3802,14 @@ Received unknown LAN packet type %i from 0x%x
 ## Results & Verification
 
 ### Before Patches
-- ❌ Stronghold mode not visible in multiplayer menu
-- ❌ Only "Instant Action" available
-- ❌ StrongholdSetup.gfx and StrongholdLobby.gfx not accessible
+-  Stronghold mode not visible in multiplayer menu
+-  Only "Instant Action" available
+-  StrongholdSetup.gfx and StrongholdLobby.gfx not accessible
 
 ### After All 8 Patches
-- ✅ Stronghold mode visible in multiplayer menu for all 4 regions
-- ✅ StrongholdLobby screen accessible with player list and playlist setup
-- ✅ StrongholdSetup screen fully functional with:
+-  Stronghold mode visible in multiplayer menu for all 4 regions
+-  StrongholdLobby screen accessible with player list and playlist setup
+-  StrongholdSetup screen fully functional with:
   - Map of Middle-earth showing all 4 regions
   - Three game modes: Good Stronghold, Evil Stronghold, Neutral Battleground
   - Region selection working (Northern, Eastern, Southern, Western)
@@ -3954,7 +3954,7 @@ The GameManager and peer networking systems appear intact and may work once auth
 
 **Total Patches Applied:** 8
 **Success Rate:** 100%
-**Status:** ✅ COMPLETE
+**Status:**  COMPLETE
 
 ---
 
@@ -3975,11 +3975,11 @@ The GameManager and peer networking systems appear intact and may work once auth
 ## Overview
 
 This workflow exports **raw assembly disassembly** from Ghidra to VSCode, giving you:
-- ✅ Accurate assembly code (not broken decompilation)
-- ✅ All addresses, labels, and comments
-- ✅ Fast searching across thousands of functions
-- ✅ Syntax highlighting for x86/x64 assembly
-- ✅ Cross-referencing with Ghidra
+-  Accurate assembly code (not broken decompilation)
+-  All addresses, labels, and comments
+-  Fast searching across thousands of functions
+-  Syntax highlighting for x86/x64 assembly
+-  Cross-referencing with Ghidra
 
 ## Quick Start
 
@@ -4319,11 +4319,11 @@ for root, dirs, files in os.walk('disassembly'):
 ## Summary
 
 **Advantages of Assembly Export:**
-- ✅ 100% accurate (no decompiler errors)
-- ✅ See exact instructions
-- ✅ All addresses preserved
-- ✅ Labels and comments included
-- ✅ Fast searching in VSCode
+-  100% accurate (no decompiler errors)
+-  See exact instructions
+-  All addresses preserved
+-  Labels and comments included
+-  Fast searching in VSCode
 
 **Best Workflow:**
 1. Export assembly from Ghidra
@@ -4430,11 +4430,11 @@ ZeroEnginePrototype/
 
 ## **3. Implemented Block Types** {#implemented-block-types}
 
-### **✅ Fully Implemented (5 Types)**
+### ** Fully Implemented (5 Types)**
 
 #### **1. logic_gamestart**
 - **Purpose**: Game start logic with visual effects
-- **Status**: ✅ Fully verified with example
+- **Status**:  Fully verified with example
 - **Common Fields**: Yes (CreateOnLoad, IsNetworkable, etc.)
 - **Specific Fields**:
   - `Transform` (matrix4x4)
@@ -4446,11 +4446,11 @@ ZeroEnginePrototype/
 
 #### **2. Output**
 - **Purpose**: Event connection blocks for logic flow
-- **Status**: ✅ Fully verified with example
+- **Status**:  Fully verified with example
 - **Common Fields**: No (only basic fields)
 - **Specific Fields**:
   - `Output` (string, event name)
-  - `target` (int, GUID) ⚠️ lowercase!
+  - `target` (int, GUID)  lowercase!
   - `Input` (string, input name)
   - `Delay` (float)
   - `Sticky` (bool)
@@ -4459,7 +4459,7 @@ ZeroEnginePrototype/
 
 #### **3. static_object**
 - **Purpose**: Static 3D objects (buildings, props)
-- **Status**: ⚠️ Implemented from file analysis
+- **Status**:  Implemented from file analysis
 - **Common Fields**: Yes
 - **Specific Fields**:
   - `Mesh` (string)
@@ -4475,7 +4475,7 @@ ZeroEnginePrototype/
 
 #### **4. Creature**
 - **Purpose**: AI creatures and characters
-- **Status**: ⚠️ Implemented from file analysis
+- **Status**:  Implemented from file analysis
 - **Common Fields**: Yes
 - **Specific Fields**:
   - `DisplayName` (string)
@@ -4490,7 +4490,7 @@ ZeroEnginePrototype/
 
 #### **5. spawn_point**
 - **Purpose**: Player/creature spawn locations
-- **Status**: ⚠️ Implemented from file analysis
+- **Status**:  Implemented from file analysis
 - **Common Fields**: Yes
 - **Specific Fields**:
   - `SpawnType` (string)
@@ -4501,7 +4501,7 @@ ZeroEnginePrototype/
   - `SpawnClass` (int)
   - `SpawnProbability` (float)
 
-### **📊 Statistics**
+### ** Statistics**
 - **Fully Verified**: 2/5 (logic_gamestart, Output)
 - **Implemented from Analysis**: 3/5 (static_object, Creature, spawn_point)
 - **Total Available Types**: 142
@@ -4589,7 +4589,7 @@ BaseBlock* createBlockByType(const std::string& type) {
 }
 ```
 
-⚠️ **Important**: After reading integers with `std::cin >>`, use `std::cin.ignore();` before `std::getline()`
+ **Important**: After reading integers with `std::cin >>`, use `std::cin.ignore();` before `std::getline()`
 
 #### **Step 4b: Add JSON Export**
 **Location**: Around line 399 in `blockToJson()` function
@@ -4681,11 +4681,11 @@ The project has been refactored into a clean, modular structure:
   - Custom value input support
 
 #### **Why This Structure?**
-✅ Faster compilation (only changed files recompile)
-✅ Better organization (Single Responsibility Principle)
-✅ Easier maintenance (find code quickly)
-✅ Reusable components (use headers in other projects)
-✅ Modern C++ (inline const, proper separation)
+ Faster compilation (only changed files recompile)
+ Better organization (Single Responsibility Principle)
+ Easier maintenance (find code quickly)
+ Reusable components (use headers in other projects)
+ Modern C++ (inline const, proper separation)
 
 #### **Build Requirements**
 Compile all .cpp files together:
@@ -5013,7 +5013,7 @@ py analyze_block_structures.py
 ---
 
 **Last Updated**: 2025
-**Maintained By**: Development Team
+**Maintained By**: Eriumsss
 **Related Files**: `BLOCK_STRUCTURE_ANALYSIS.md`, `(Animation_Tables).groovy`
 
 
@@ -5039,7 +5039,7 @@ npm run watch    # Watch mode
 
 ---
 
-## 📁 Architecture
+##  Architecture
 
 ### Clean Architecture Structure
 ```
@@ -5069,7 +5069,7 @@ src/
 
 ---
 
-## 🔧 Usage Examples
+##  Usage Examples
 
 ### Services
 
@@ -5121,7 +5121,7 @@ endTimer();
 
 ---
 
-## 🧪 Testing
+##  Testing
 
 ### Run Tests
 ```bash
@@ -5151,7 +5151,7 @@ suite('ValidationService', () => {
 
 ---
 
-## 🔒 Security
+##  Security
 
 ### Input Validation
 ```typescript
@@ -5166,23 +5166,23 @@ validation.validateWebviewMessage(msg); // Whitelist check
 ```
 
 ### Best Practices
-- ✅ Validate all user inputs
-- ✅ Sanitize all outputs
-- ✅ Use whitelist approach
-- ✅ Escape HTML special characters
-- ✅ Log security events
+-  Validate all user inputs
+-  Sanitize all outputs
+-  Use whitelist approach
+-  Escape HTML special characters
+-  Log security events
 
 ---
 
-## 📊 Code Quality
+##  Code Quality
 
 ### Standards Met
-- ✅ **TypeScript**: 100% strict mode
-- ✅ **SOLID Principles**: All applied
-- ✅ **Clean Code**: Readable & maintainable
-- ✅ **Security**: Input validation & sanitization
-- ✅ **Testing**: Comprehensive test suite
-- ✅ **Documentation**: JSDoc comments
+-  **TypeScript**: 100% strict mode
+-  **SOLID Principles**: All applied
+-  **Clean Code**: Readable & maintainable
+-  **Security**: Input validation & sanitization
+-  **Testing**: Comprehensive test suite
+-  **Documentation**: JSDoc comments
 
 ### Metrics
 - **Test Coverage**: >70% target
@@ -5220,7 +5220,7 @@ npm run clean        # Clean artifacts
 
 ---
 
-## 🔄 Migration from Old Code
+##  Migration from Old Code
 
 ### Key Changes
 
@@ -5266,7 +5266,7 @@ npm run clean        # Clean artifacts
 
 ---
 
-## 🐛 Troubleshooting
+##  Troubleshooting
 
 ### TypeScript Errors
 ```bash
@@ -5276,10 +5276,10 @@ npm run compile
 
 ### Import Errors
 ```typescript
-// ✅ Correct
+//  Correct
 import { ValidationService } from './services/ValidationService';
 
-// ❌ Wrong
+//  Wrong
 import ValidationService from './services/ValidationService';
 ```
 
@@ -5290,7 +5290,7 @@ npm test -- --verbose
 
 ---
 
-## 📚 Key Concepts
+##  Key Concepts
 
 ### Singleton Pattern
 ```typescript
@@ -5327,7 +5327,7 @@ log.error('Error', error);
 
 ---
 
-## 🎯 Best Practices
+##  Best Practices
 
 ### Code Style
 - Use TypeScript strict mode
@@ -5358,7 +5358,7 @@ log.error('Error', error);
 
 ---
 
-## 📖 Documentation
+##  Documentation
 
 ### JSDoc Example
 ```typescript
@@ -5401,7 +5401,7 @@ public validateInput(text: string): IInputValidation {
 
 ---
 
-## 🤝 Contributing
+##  Contribution for lotr conquest community
 
 ### Guidelines
 1. Follow the architecture
@@ -5421,9 +5421,9 @@ public validateInput(text: string): IInputValidation {
 
 ---
 
-## 📊 Project Status
+##  Project Status
 
-### Completed ✅
+### Completed 
 - Clean Architecture implementation
 - Core services (Context, Validation, Formatting)
 - Error handling system
@@ -5433,7 +5433,7 @@ public validateInput(text: string): IInputValidation {
 - CI/CD pipeline
 - Documentation
 
-### TODO 📝
+### TODO 
 - Extract command handlers
 - Migrate UI components
 - Add CSP headers to webviews
@@ -5444,7 +5444,7 @@ public validateInput(text: string): IInputValidation {
 
 ---
 
-## 🎓 Learning Resources
+##  Learning Resources
 
 ### Books
 - "Clean Code" by Robert C. Martin
@@ -5458,19 +5458,19 @@ public validateInput(text: string): IInputValidation {
 
 ---
 
-## 📞 Support
+##  Support
 
 Need help?
 1. Check this guide
 2. Review JSDoc comments
 3. Look at test files
 4. Check error messages
-
+5. Join Lotr Conquest Modding server on Discord
 ---
 
 **Version**: 2.3.0 (Refactored)  
-**Quality**: World-Class Enterprise Code  
-**Status**: ✅ Production Ready
+**Quality**: World-Class  
+**Status**:  Production Ready
 
 
 
@@ -5887,4 +5887,5 @@ It has the following structure:
 - TODO: Positioning data
 
 ======================================================================
+
 
