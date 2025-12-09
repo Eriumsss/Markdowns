@@ -1,7 +1,7 @@
 # LOTR Conquest Reverse Engineering Knowledge Base
 
 > **Purpose**: Complete knowledge base for AI agents working on the LOTR Conquest debug overlay project.
-> **Last Updated**: December 2024
+> **Last Updated**: December 2025
 > **Status**: Team ID working, Position data NOT YET FOUND
 
 ---
@@ -28,10 +28,10 @@
 A **DirectX 9 debug overlay DLL** that hooks into `ConquestLLC.exe` (Lord of the Rings: Conquest) to display real-time game state information on screen.
 
 ### Ultimate Goals
-- ✅ Display **Team ID** (Good/Evil/Neutral)
-- ❌ Display **Player World Position** (X, Y, Z coordinates) - NOT YET WORKING
-- ❌ Display **Health/Mana** - NOT YET ATTEMPTED
-- ❌ Display **Other Entity Data** - NOT YET ATTEMPTED
+-  Display **Team ID** (Good/Evil/Neutral)
+-  Display **Player World Position** (X, Y, Z coordinates) - NOT YET WORKING
+-  Display **Health/Mana** - NOT YET ATTEMPTED
+-  Display **Other Entity Data** - NOT YET ATTEMPTED
 
 ### Architecture
 ```
@@ -74,7 +74,7 @@ The compiled `d3d9.dll` is placed in the game directory. The game loads it as a 
 
 ## 3. Complete Timeline of Work
 
-### Phase 1: D3D9 Hook Implementation ✅ SUCCESS
+### Phase 1: D3D9 Hook Implementation  SUCCESS
 
 **Goal**: Hook EndScene to render overlay text
 
@@ -84,7 +84,7 @@ The compiled `d3d9.dll` is placed in the game directory. The game loads it as a 
 3. Used trampoline pattern: save original bytes, JMP to hook, restore and call original
 4. Created `ID3DXFont` for text rendering
 
-**Result**: ✅ Frame counter updates every frame, overlay renders correctly
+**Result**:  Frame counter updates every frame, overlay renders correctly
 
 ### Phase 2: Finding Player Data Structure
 
@@ -95,9 +95,9 @@ The compiled `d3d9.dll` is placed in the game directory. The game loads it as a 
 2. Found `DAT_00cd7f20 + 0x64` in `FUN_0045849c` - Creature array with 4 slots
 3. Confirmed only index 0 is non-zero for local player
 
-**Result**: ✅ Found player controller pointer at `[[DAT_00cd7f20] + 0x64]`
+**Result**:  Found player controller pointer at `[[DAT_00cd7f20] + 0x64]`
 
-### Phase 3: Team ID Discovery ✅ SUCCESS
+### Phase 3: Team ID Discovery  SUCCESS
 
 **Hypothesis**: Team ID stored somewhere in controller structure
 
@@ -108,9 +108,9 @@ The compiled `d3d9.dll` is placed in the game directory. The game loads it as a 
 - Value 1 = Good (Fellowship)
 - Value 2 = Evil (Sauron's Army)
 
-**Result**: ✅ Team ID confirmed working and color-coded in overlay
+**Result**:  Team ID confirmed working and color-coded in overlay
 
-### Phase 4: Position Data Search ❌ ONGOING - NOT FOUND
+### Phase 4: Position Data Search  ONGOING - NOT FOUND
 
 See [Section 6: Failed Position Approaches](#6-failed-position-approaches) for complete details.
 
@@ -122,10 +122,10 @@ See [Section 6: Failed Position Approaches](#6-failed-position-approaches) for c
 
 | Address | Name | Purpose | Status |
 |---------|------|---------|--------|
-| `0x00cd7f20` | DAT_00cd7f20 | Base for creature/controller array | ✅ WORKING |
-| `0x00cd8038` | DAT_00cd8038 | Context object pointer | ⚠️ TESTED, chain breaks |
-| `0x00cd8048` | DAT_00cd8048 | Player manager | ❌ Static profile only |
-| `0x00cd7fdc` | DAT_00cd7fdc | Game state pointer | ⚠️ NOT TESTED |
+| `0x00cd7f20` | DAT_00cd7f20 | Base for creature/controller array |  WORKING |
+| `0x00cd8038` | DAT_00cd8038 | Context object pointer |  TESTED, chain breaks |
+| `0x00cd8048` | DAT_00cd8048 | Player manager |  Static profile only |
+| `0x00cd7fdc` | DAT_00cd7fdc | Game state pointer |  NOT TESTED |
 
 ### Access Pattern for Player Controller
 ```c
@@ -143,13 +143,13 @@ DWORD controller = *(DWORD*)(base + 0x64);   // First creature slot
 
 **CRITICAL UNDERSTANDING**: This is a **Player Controller** object, NOT the actual game entity with world position. It contains input state and team affiliation but position is stored elsewhere.
 
-### ✅ Confirmed Working Offsets
+###  Confirmed Working Offsets
 
 | Offset | Type | Name | Values/Range | Notes |
 |--------|------|------|--------------|-------|
 | **+0x1CA0** | BYTE | Team ID | 0, 1, 2 | 0=Neutral, 1=Good, 2=Evil |
 
-### ✅ Input/Movement Vectors (Working)
+###  Input/Movement Vectors (Working)
 
 | Offset | Type | Name | Range | Behavior |
 |--------|------|------|-------|----------|
@@ -157,7 +157,7 @@ DWORD controller = *(DWORD*)(base + 0x64);   // First creature slot
 | +0xA4 | float | InputForwardBack | -1.0 to +1.0 | Back=-1, Forward=+1 |
 | +0xA8 | float | InputStrafe | -1.0 to +1.0 | Strafe direction |
 
-### ⚠️ Camera/Look Direction (Changes on mouse - NOT pure position)
+###  Camera/Look Direction (Changes on mouse - NOT pure position)
 
 | Offset | Type | Name | Notes |
 |--------|------|------|-------|
@@ -169,7 +169,7 @@ DWORD controller = *(DWORD*)(base + 0x64);   // First creature slot
 | +0xD8 | float | CameraZ | Changes on mouse movement only |
 | +0xE0 | float | AnimBreathing | Oscillates with breathing animation |
 
-### ❌ NOT Position Data
+###  NOT Position Data
 
 The +0xC0/C4/C8 values were initially thought to be position but:
 
@@ -192,7 +192,7 @@ The +0xC0/C4/C8 values were initially thought to be position but:
 
 ## 6. Failed Position Approaches
 
-### ❌ Attempt 1: Direct Offsets on Controller
+###  Attempt 1: Direct Offsets on Controller
 
 **Hypothesis**: Position stored directly in controller structure at common offsets
 
@@ -204,13 +204,13 @@ float z = *(float*)(controller + 0x48);
 // Also tried: 0x50-0x58, 0x60-0x68, 0x70-0x78, etc.
 ```
 
-**Result**: ❌ All values static or garbage
+**Result**:  All values static or garbage
 
 **Lesson**: Controller structure doesn't contain position directly
 
 ---
 
-### ❌ Attempt 2: Transform Pointer at +0x124
+###  Attempt 2: Transform Pointer at +0x124
 
 **Hypothesis**: Based on `FUN_007cd0c1` which uses `*(int*)(obj + 0x124) + 0x40/0x48`
 
@@ -221,13 +221,13 @@ float x = *(float*)(transform + 0x40);
 float z = *(float*)(transform + 0x48);
 ```
 
-**Result**: ❌ `controller + 0x124` = 1 (not a pointer)
+**Result**:  `controller + 0x124` = 1 (not a pointer)
 
 **Lesson**: The +0x124 pattern applies to a DIFFERENT object type, not our controller
 
 ---
 
-### ❌ Attempt 3: Nested Chain via +0x10
+###  Attempt 3: Nested Chain via +0x10
 
 **Hypothesis**: Controller has inner object at +0x10 that has the transform
 
@@ -238,13 +238,13 @@ DWORD transform = *(DWORD*)(inner + 0x124);      // Expected: transform pointer
 float x = *(float*)(transform + 0x40);
 ```
 
-**Result**: ❌ `controller + 0x10` = 0x218C (not a valid heap pointer)
+**Result**:  `controller + 0x10` = 0x218C (not a valid heap pointer)
 
 **Lesson**: +0x10 is not a pointer in this structure
 
 ---
 
-### ❌ Attempt 4: Via +0x130 Pointer
+###  Attempt 4: Via +0x130 Pointer
 
 **Hypothesis**: Pointer at +0x130 leads to entity with position
 
@@ -256,11 +256,11 @@ float y = *(float*)(ptr130 + 0x34);
 float z = *(float*)(ptr130 + 0x38);
 ```
 
-**Result**: ❌ Values static, don't change on movement
+**Result**:  Values static, don't change on movement
 
 ---
 
-### ❌ Attempt 5: Via +0x080 -> +0x10 -> +0x124 Chain
+###  Attempt 5: Via +0x080 -> +0x10 -> +0x124 Chain
 
 **Hypothesis**: Deep pointer chain following FUN_007cd0c1 pattern through +0x080
 
@@ -272,11 +272,11 @@ DWORD transform = *(DWORD*)(inner + 0x124);
 float x = *(float*)(transform + 0x40);
 ```
 
-**Result**: ❌ Chain produces valid pointers but position doesn't update
+**Result**:  Chain produces valid pointers but position doesn't update
 
 ---
 
-### ❌ Attempt 6: Via +0x084 Chain
+###  Attempt 6: Via +0x084 Chain
 
 **Hypothesis**: Similar to +0x080 but using adjacent pointer
 
@@ -288,11 +288,11 @@ DWORD transform = *(DWORD*)(inner + 0x124);
 float x = *(float*)(transform + 0x40);
 ```
 
-**Result**: ❌ Same as +0x080 - chain exists but no position data
+**Result**:  Same as +0x080 - chain exists but no position data
 
 ---
 
-### ❌ Attempt 7: +0x13C Direct Read
+###  Attempt 7: +0x13C Direct Read
 
 **Hypothesis**: +0x13C pointer leads directly to position floats
 
@@ -304,11 +304,11 @@ float y = *(float*)(ptr13C + 0x44);
 float z = *(float*)(ptr13C + 0x48);
 ```
 
-**Result**: ⚠️ Values DO change, but only show -1.0/0.0/+1.0 - these are direction vectors, not world position
+**Result**:  Values DO change, but only show -1.0/0.0/+1.0 - these are direction vectors, not world position
 
 ---
 
-### ❌ Attempt 8: DAT_00cd8038 Context Chain
+###  Attempt 8: DAT_00cd8038 Context Chain
 
 **Hypothesis**: Based on `FUN_0079ce88` pattern for entity lookup
 
@@ -322,17 +322,17 @@ DWORD transform = *(DWORD*)(inner + 0x124);
 float x = *(float*)(transform + 0x40);
 ```
 
-**Result**: ❌ Chain breaks - pointers don't lead to valid position
+**Result**:  Chain breaks - pointers don't lead to valid position
 
 ---
 
-### ❌ Attempt 9: Deep Scan (0x200-0x5FC)
+###  Attempt 9: Deep Scan (0x200-0x5FC)
 
 **Hypothesis**: Position might be at unusual deep offset
 
 **Method**: Scanned all floats from +0x200 to +0x5FC, tracked which changed on movement
 
-**Result**: ❌ No offsets in this range showed position-like values with large deltas
+**Result**:  No offsets in this range showed position-like values with large deltas
 
 ---
 
@@ -341,10 +341,10 @@ float x = *(float*)(transform + 0x40);
 **The structure at `[[DAT_00cd7f20] + 0x64]` is definitively a Player Controller, NOT the player entity.**
 
 It contains:
-- ✅ Team affiliation
-- ✅ Input state
-- ✅ Camera/look direction
-- ❌ NO world position
+-  Team affiliation
+-  Input state
+-  Camera/look direction
+-  NO world position
 
 Position must be accessed via:
 1. A different global pointer entirely
@@ -456,7 +456,7 @@ The overlay code in `dllmain.cpp` renders all confirmed working data. It does NO
 
 ### Primary Problem: World Position Not Found
 
-**Status**: ❌ UNSOLVED
+**Status**:  UNSOLVED
 
 **What We Know**:
 - Position is NOT in the controller structure at `[[DAT_00cd7f20] + 0x64]`
@@ -501,7 +501,7 @@ Use a memory scanner (Cheat Engine style):
 
 ### What NOT To Try Again
 
-❌ **Do not retry these - they are confirmed failures:**
+ **Do not retry these - they are confirmed failures:**
 - Direct offsets on controller (+0x40, +0x50, etc.)
 - `[controller + 0x124]` - returns 1, not a pointer
 - `[controller + 0x10]` - returns 0x218C, not a heap pointer
@@ -521,9 +521,9 @@ Copy and paste this prompt to quickly onboard a new AI agent:
 You are continuing reverse engineering work on LOTR Conquest (ConquestLLC.exe) debug overlay.
 
 **Project Status:**
-- D3D9 EndScene hook: ✅ WORKING
-- Team ID display: ✅ WORKING (offset +0x1CA0)
-- Player Position: ❌ NOT FOUND
+- D3D9 EndScene hook:  WORKING
+- Team ID display:  WORKING (offset +0x1CA0)
+- Player Position:  NOT FOUND
 
 **Critical Knowledge:**
 
