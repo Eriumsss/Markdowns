@@ -735,8 +735,6 @@ From `overrides.csv` (1,447 entries):
 
 ### Appendix C: Tool Performance Benchmarks
 
-**Test system**: Intel i7-13620H, 48GB DDR5-5600, RTX 5070 Laptop
-
 | Tool | Language | Hashes/sec | Notes |
 |------|----------|------------|-------|
 | brute_fnv1.exe | C (MSVC /O2) | 200M | Single-threaded |
