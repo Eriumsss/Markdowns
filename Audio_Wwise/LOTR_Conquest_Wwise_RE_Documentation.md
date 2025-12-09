@@ -566,7 +566,7 @@ These are generic events layered with hero-specific vocals via switch containers
 
 | Approach | Complexity | 3D Audio | Pros | Cons |
 |----------|------------|----------|------|------|
-| WEM Replacement | Easy |  Yes | Native Wwise playback | Requires repacking sound.pck |
+| WEM Replacement | Near Impossible |  Yes | Native Wwise playback | Requires repacking sound.pck |
 | Hook Redirection | Medium |  2D only | No file modification | Custom audio plays flat |
 | Hook + Position | Hard |  Yes | Full control | Complex implementation |
 
