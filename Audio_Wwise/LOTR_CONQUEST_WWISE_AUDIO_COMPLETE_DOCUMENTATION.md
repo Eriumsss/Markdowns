@@ -3,7 +3,7 @@
 **Game**: The Lord of the Rings: Conquest  
 **Audio Engine**: Audiokinetic Wwise  
 **Status**:  COMPLETE  
-**Date**: October 29, 2024  
+**Date**: October 29, 2025
 **Version**: 1.0
 
 ---
