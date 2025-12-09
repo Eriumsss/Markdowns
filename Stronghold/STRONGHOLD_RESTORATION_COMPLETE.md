@@ -4,7 +4,7 @@
 
 **Objective:** Restore access to the Stronghold multiplayer lobby in "The Lord of the Rings - Conquest" (Debug.exe) by reverse engineering and patching authentication checks and mode selectors.
 
-**Status:** ✅ **SUCCESSFUL** - Stronghold mode is now fully accessible and functional
+**Status:**  **SUCCESSFUL** - Stronghold mode is now fully accessible and functional
 
 **Date Completed:** 2025-11-01
 
@@ -67,12 +67,12 @@ Multiple authentication checks and a hardcoded mode selector were preventing Str
 **Original Bytes:** `77 44` (JA 0x00726887)  
 **New Bytes:** `90 90` (NOP NOP)  
 **Purpose:** Bypass jump that would skip Stronghold string loading  
-**Status:** ✅ Applied
+**Status:**  Applied
 
 ### Patch #2: Connection Checks Bypass (5 locations)
 **Function:** FUN_00727a45 (Mode Selector Caller)  
 **Purpose:** Bypass connection validation checks  
-**Status:** ✅ Applied
+**Status:**  Applied
 
 | Address    | Original Bytes | New Bytes | Instruction |
 |------------|----------------|-----------|-------------|
@@ -88,7 +88,7 @@ Multiple authentication checks and a hardcoded mode selector were preventing Str
 **Original Bytes:** `74 32` (JZ 0x007275d0)  
 **New Bytes:** `90 90` (NOP NOP)  
 **Purpose:** Bypass flag check that would skip Stronghold menu registration  
-**Status:** ✅ Applied
+**Status:**  Applied
 
 ### Patch #4: Prevent 0x445 Flag Set #1
 **Function:** FUN_0088b5dc  
@@ -96,7 +96,7 @@ Multiple authentication checks and a hardcoded mode selector were preventing Str
 **Original Bytes:** `C6 82 45 04 00 00 01` (MOV byte ptr [EDX + 0x445], 0x1)  
 **New Bytes:** `C6 82 45 04 00 00 00` (MOV byte ptr [EDX + 0x445], 0x0)  
 **Purpose:** Prevent setting flag 0x445 to 1 (which blocks Stronghold)  
-**Status:** ✅ Applied
+**Status:**  Applied
 
 ### Patch #5: Prevent 0x445 Flag Set #2
 **Function:** FUN_008f941d  
@@ -104,7 +104,7 @@ Multiple authentication checks and a hardcoded mode selector were preventing Str
 **Original Bytes:** `C6 80 45 04 00 00 01` (MOV byte ptr [EAX + 0x445], 0x1)  
 **New Bytes:** `C6 80 45 04 00 00 00` (MOV byte ptr [EAX + 0x445], 0x0)  
 **Purpose:** Prevent setting flag 0x445 to 1 in another location  
-**Status:** ✅ Applied
+**Status:**  Applied
 
 ### Patch #6: Bypass 0x445 Flag Check in Menu Builder
 **Function:** FUN_00727408 (Submenu Builder)  
@@ -112,7 +112,7 @@ Multiple authentication checks and a hardcoded mode selector were preventing Str
 **Original Bytes:** `0F 85 F6 00 00 00` (JNZ 0x00727567)  
 **New Bytes:** `90 90 90 90 90 90` (6x NOP)  
 **Purpose:** Bypass check of flag 0x445 that would skip Stronghold menu item  
-**Status:** ✅ Applied
+**Status:**  Applied
 
 ### Patch #7: Prevent Conditional 0x445 Flag Set
 **Function:** FUN_008c8959  
@@ -120,16 +120,16 @@ Multiple authentication checks and a hardcoded mode selector were preventing Str
 **Original Bytes:** `88 81 45 04 00 00` (MOV byte ptr [ECX + 0x445], AL)  
 **New Bytes:** `90 90 90 90 90 90` (6x NOP)  
 **Purpose:** Prevent conditional write to flag 0x445  
-**Status:** ✅ Applied
+**Status:**  Applied
 
-### Patch #8: Fix Mode Selector to Enable Stronghold ⭐
+### Patch #8: Fix Mode Selector to Enable Stronghold 
 **Function:** FUN_008cd495 (Mode Initialization)  
 **Address:** 0x008cd4bd  
 **Original Bytes:** `C7 81 F0 03 00 00 01 00 00 00` (MOV dword ptr [ECX + 0x3f0], 0x1)  
 **New Bytes:** `C7 81 F0 03 00 00 02 00 00 00` (MOV dword ptr [ECX + 0x3f0], 0x2)  
 **Specific Change:** Byte at offset +6: `01` → `02`  
 **Purpose:** Change hardcoded mode from 1 (Instant Action) to 2 (Stronghold)  
-**Status:** ✅ Applied - **THIS WAS THE CRITICAL FIX**
+**Status:**  Applied - **THIS WAS THE CRITICAL FIX**
 
 ---
 
@@ -165,7 +165,7 @@ Multiple authentication checks and a hardcoded mode selector were preventing Str
 
 **Patches Applied:** Patch #3 at 0x0072759c, Patch #6 at 0x0072746b
 
-### FUN_008cd495 - Mode Initialization ⭐
+### FUN_008cd495 - Mode Initialization 
 **Address:** 0x008cd495  
 **Purpose:** Initializes game mode based on [ESI + 0x8] selector value
 
@@ -254,14 +254,14 @@ Multiple authentication checks and a hardcoded mode selector were preventing Str
 ## Results
 
 ### Before Patches
-- ❌ Stronghold mode not visible in multiplayer menu
-- ❌ Only "Instant Action" available
-- ❌ StrongholdSetup.gfx and StrongholdLobby.gfx not accessible
+-  Stronghold mode not visible in multiplayer menu
+-  Only "Instant Action" available
+-  StrongholdSetup.gfx and StrongholdLobby.gfx not accessible
 
 ### After All 8 Patches
-- ✅ Stronghold mode visible in multiplayer menu for all 4 regions
-- ✅ StrongholdLobby screen accessible with player list and playlist setup
-- ✅ StrongholdSetup screen fully functional with:
+-  Stronghold mode visible in multiplayer menu for all 4 regions
+-  StrongholdLobby screen accessible with player list and playlist setup
+-  StrongholdSetup screen fully functional with:
   - Map of Middle-earth showing all 4 regions
   - Three game modes: Good Stronghold, Evil Stronghold, Neutral Battleground
   - Region selection working (Northern, Eastern, Southern, Western)
@@ -332,7 +332,7 @@ The Stronghold mode restoration was successful through systematic reverse engine
 
 **Total Patches Applied:** 8  
 **Success Rate:** 100%  
-**Status:** ✅ COMPLETE
+**Status:**  COMPLETE
 
 ---
 
