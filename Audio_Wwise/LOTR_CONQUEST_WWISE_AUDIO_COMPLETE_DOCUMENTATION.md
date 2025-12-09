@@ -2,7 +2,7 @@
 
 **Game**: The Lord of the Rings: Conquest  
 **Audio Engine**: Audiokinetic Wwise  
-**Status**: ✅ COMPLETE  
+**Status**:  COMPLETE  
 **Date**: October 29, 2024  
 **Version**: 1.0
 
@@ -238,7 +238,7 @@ STID Organization → WEM Audio → WAV Playback
 
 ## 1.3 Key Achievements
 
-### ✅ Extraction & Organization
+###  Extraction & Organization
 
 - **296 BNK files** extracted from sound.pck (100% success rate)
 - **1,971 WEM files** extracted from 60 audio BNKs (100% success)
@@ -248,7 +248,7 @@ STID Organization → WEM Audio → WAV Playback
 - **260 duplicate groups** identified and documented
 - **100% RIFF header validation** passed
 
-### ✅ Analysis & Mapping
+###  Analysis & Mapping
 
 - **336,116 event-to-WEM mappings** created
 - **Complete WWiseIDTable analysis** (4,663 entries → 2,817 unique vals)
@@ -258,7 +258,7 @@ STID Organization → WEM Audio → WAV Playback
 - **Complete PCK format** reverse engineered
 - **Offset calculation formula** discovered
 
-### ✅ Investigation & Documentation
+###  Investigation & Documentation
 
 - **FNV-1 hash algorithm** confirmed (100% match rate on 70 keys)
 - **Hex key investigation** completed (tested 1,732,515+ strings)
@@ -607,7 +607,7 @@ strings -n 3 ConquestLLC.exe > exe_strings.txt
 
 ### Confirmed Readable Keys in Executable
 
-✅ **46 out of 48 readable keys found** in ConquestLLC.exe
+ **46 out of 48 readable keys found** in ConquestLLC.exe
 
 **Missing keys** (2):
 - `VO_CQ_conquest_v1` (might be in different file)
@@ -1535,7 +1535,7 @@ def extract_audio_from_pck(pck_file, entry):
 
 ---
 
-**Document Status**: ✅ COMPLETE
+**Document Status**:  COMPLETE
 **Last Updated**: October 29, 2024
 **Version**: 1.0
 
