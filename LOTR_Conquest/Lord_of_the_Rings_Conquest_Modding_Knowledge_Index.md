@@ -804,7 +804,7 @@ spawn_point: "Team": 1 or "Team": 2  // Fixed team assignment
 }
 ```
 
-**⚠️ CRITICAL INSIGHT - CORRECTED**: Team 31 does NOT break spawn selection. The real issue is missing Output connections for spawn point team switching.
+** CRITICAL INSIGHT - CORRECTED**: Team 31 does NOT break spawn selection. The real issue is missing Output connections for spawn point team switching.
 
 ### 5.1. Missing Spawn Point Team Switching (ACTUAL ROOT CAUSE)
 **Problem**: Spawn point stays neutral after capture, not available for team spawning
@@ -1045,7 +1045,7 @@ Adding a new capture point requires creating multiple interconnected objects tha
 }
 ```
 
-**⚠️ CRITICAL**: Must also update spawn_emitters (see Step 6 below)
+** CRITICAL**: Must also update spawn_emitters (see Step 6 below)
 
 #### 3. HUD System (4 objects)
 ```json
@@ -1105,7 +1105,7 @@ Adding a new capture point requires creating multiple interconnected objects tha
 
 #### 5. AI System (CRITICAL - Most Complex Component)
 
-**⚠️ WARNING**: AI system requires exact connection pattern matching existing conquest points. Simply creating AIGoal objects is NOT sufficient!
+** WARNING**: AI system requires exact connection pattern matching existing conquest points. Simply creating AIGoal objects is NOT sufficient!
 
 **Required AI Components:**
 1. **4 AIGoal Objects** (Attack/Defend for both teams)
@@ -1310,7 +1310,7 @@ Find the existing `logic_relay` object (usually named "CQ_RLY_ActivateAI") and a
 
 #### Step 6: Update Spawn Emitters (CRITICAL FOR MAP VISIBILITY)
 
-**⚠️ MOST IMPORTANT STEP**: Add your new spawn_point GUID to all conquest spawn_emitters' "Points" arrays.
+** MOST IMPORTANT STEP**: Add your new spawn_point GUID to all conquest spawn_emitters' "Points" arrays.
 
 **Required Spawn Emitters to Update:**
 1. **CQ_EMIT_TEAM1_PLAYER** (Team 1 player spawning)
@@ -1417,7 +1417,7 @@ Before finalizing a new capture point:
 7. **Team Control Test**: Verify spawn availability changes with team control
 8. **AI Test**: Verify AI attempts to capture the point
 
-**⚠️ CRITICAL**: Step 5 (Post-Capture Spawn Test) is the most important and commonly failing test. Many capture points appear to work but fail this critical functionality test.
+** CRITICAL**: Step 5 (Post-Capture Spawn Test) is the most important and commonly failing test. Many capture points appear to work but fail this critical functionality test.
 
 **Post-Capture Spawn Test Procedure:**
 1. Start conquest match
@@ -1749,7 +1749,7 @@ done
 # (Advanced - requires understanding of BNK structure)
 ```
 
-**⚠️ Warning**: Repacking BNK files is complex and requires careful attention to:
+** Warning**: Repacking BNK files is complex and requires careful attention to:
 - Maintaining correct DIDX offsets
 - Preserving HIRC event relationships
 - Updating file size references
