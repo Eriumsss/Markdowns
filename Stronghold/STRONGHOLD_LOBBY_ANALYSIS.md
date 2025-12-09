@@ -367,7 +367,7 @@ Requirements:
 ## Practical Restoration Steps
 
 ### Phase 1: Analysis (Current)
-✅ **Completed:**
+ **Completed:**
 - Identified UI components and Flash files
 - Located authentication functions
 - Found GameManager system
@@ -433,7 +433,7 @@ At 0x005af578 (NuLogin init):
 
 ---
 
-## 🔥 CRITICAL DISCOVERY: Stronghold Mode Selection Logic
+##  CRITICAL DISCOVERY: Stronghold Mode Selection Logic
 
 ### **Function FUN_00726825** - Game Mode Selector
 
@@ -532,7 +532,7 @@ Search for functions that check if Stronghold mode is available. Look for:
 
 ---
 
-## 🔥 CRITICAL DISCOVERY: NuLogin Call Mechanism Found!
+##  CRITICAL DISCOVERY: NuLogin Call Mechanism Found!
 
 ### **LAB_005bb1e0 - NuLogin Caller Function**
 
@@ -586,9 +586,9 @@ This loads the function pointer table and calls the auth init we already patched
 ## Patching Strategy - UPDATED
 
 ### **Current Patches Applied:**
-1. ✅ Auth init skip at 0x005af568
-2. ✅ Mode selector bypass at 0x00726841 (EB 00)
-3. ✅ Connection checks bypass at 0x00727b24-0x00727b4b (40 NOPs)
+1.  Auth init skip at 0x005af568
+2.  Mode selector bypass at 0x00726841 (EB 00)
+3.  Connection checks bypass at 0x00727b24-0x00727b4b (40 NOPs)
 
 ### **Why Login Still Appears:**
 
