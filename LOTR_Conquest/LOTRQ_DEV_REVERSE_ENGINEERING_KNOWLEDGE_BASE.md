@@ -1,8 +1,8 @@
 # LOTR Conquest Reverse Engineering - Complete Knowledge Base
 
 > **Purpose**: Comprehensive historical record of all reverse engineering work on LOTR Conquest debug overlay
-> **Last Updated**: December 2024
-> **Project Status**: D3D9 hook ✅ | Team ID ✅ | Position ❌ NOT FOUND | Audio Hook ✅ | Asset Browser ✅
+> **Last Updated**: December 2025
+> **Project Status**: D3D9 hook  | Team ID  | Position  NOT FOUND | Audio Hook  | Asset Browser 
 
 ---
 
@@ -41,13 +41,13 @@ A **DirectX 9 debug overlay DLL** that hooks into `ConquestLLC.exe` (Lord of the
 
 | Goal | Status | Notes |
 |------|--------|-------|
-| D3D9 EndScene Hook | ✅ WORKING | Renders overlay every frame |
-| Team ID Display | ✅ WORKING | Offset +0x1CA0 confirmed |
-| Input Vector Display | ✅ WORKING | Offsets +0xA0/A4/A8 |
-| Camera Direction | ✅ WORKING | Offsets +0xD0/D4/D8 |
-| **Player World Position** | ❌ NOT FOUND | Critical - see Section 7 |
-| Health/Mana Display | ⚠️ NOT ATTEMPTED | Blocked by position issue |
-| Entity Enumeration | ⚠️ PARTIAL | Only 4 controller slots |
+| D3D9 EndScene Hook |  WORKING | Renders overlay every frame |
+| Team ID Display |  WORKING | Offset +0x1CA0 confirmed |
+| Input Vector Display |  WORKING | Offsets +0xA0/A4/A8 |
+| Camera Direction |  WORKING | Offsets +0xD0/D4/D8 |
+| **Player World Position** |  NOT FOUND | Critical - see Section 7 |
+| Health/Mana Display |  NOT ATTEMPTED | Blocked by position issue |
+| Entity Enumeration |  PARTIAL | Only 4 controller slots |
 
 ### Architecture Diagram
 
@@ -132,7 +132,7 @@ The compiled `d3d9.dll` is placed in the game's root directory. The game loads i
 
 ## 3. Complete Chronological History
 
-### Phase 1: D3D9 Hook Implementation ✅ SUCCESS
+### Phase 1: D3D9 Hook Implementation  SUCCESS
 
 **Goal**: Hook DirectX 9 EndScene to render overlay text each frame
 
@@ -164,7 +164,7 @@ HRESULT WINAPI Hooked_EndScene(IDirect3DDevice9* device) {
 
 **Verification**: Frame counter increments every frame, proving hook executes consistently.
 
-**Result**: ✅ Overlay renders correctly, stable at 60+ FPS
+**Result**:  Overlay renders correctly, stable at 60+ FPS
 
 ---
 
@@ -195,11 +195,11 @@ do {
 } while (iVar5 < 4);
 ```
 
-**Result**: ✅ Found player controller pointer at `[[DAT_00cd7f20] + 0x64]`
+**Result**:  Found player controller pointer at `[[DAT_00cd7f20] + 0x64]`
 
 ---
 
-### Phase 3: Team ID Discovery ✅ SUCCESS
+### Phase 3: Team ID Discovery  SUCCESS
 
 **Goal**: Find the team/faction ID for the player
 
@@ -227,11 +227,11 @@ const char* teamNames[] = {"Neutral", "Good", "Evil"};
 // Correctly displays current team
 ```
 
-**Result**: ✅ Team ID confirmed working and color-coded in overlay
+**Result**:  Team ID confirmed working and color-coded in overlay
 
 ---
 
-### Phase 4: Position Data Search ❌ ONGOING - NOT FOUND
+### Phase 4: Position Data Search  ONGOING - NOT FOUND
 
 **Goal**: Find player world position (X, Y, Z coordinates)
 
@@ -241,7 +241,7 @@ const char* teamNames[] = {"Neutral", "Good", "Evil"};
 
 **Critical Insight**: The structure at `[[DAT_00cd7f20] + 0x64]` is a **Player Controller** (input state, team affiliation), NOT the actual game entity with world position.
 
-**Result**: ❌ Position NOT found - requires different approach
+**Result**:  Position NOT found - requires different approach
 
 ---
 
@@ -261,8 +261,8 @@ const char* teamNames[] = {"Neutral", "Good", "Evil"};
 |---------|----------|--------|
 | 1 | Show all changing values | Too fast, unreadable |
 | 2 | Snapshot every 60 frames | Values kept resetting |
-| 3 | Track min/max range permanently | ✅ Better - but showed direction vectors only |
-| 4 | Filter by delta > 1.0 | ✅ Filtered out noise |
+| 3 | Track min/max range permanently |  Better - but showed direction vectors only |
+| 4 | Filter by delta > 1.0 |  Filtered out noise |
 | 5 | Deep scan 0x200-0x5FC | No position-like values found |
 
 **Final State**: Reverted to clean overlay showing confirmed working data
@@ -275,13 +275,13 @@ const char* teamNames[] = {"Neutral", "Good", "Evil"};
 
 | Address | Name | Purpose | Status | Notes |
 |---------|------|---------|--------|-------|
-| `0x00cd7f20` | DAT_00cd7f20 | Base for creature/controller array | ✅ WORKING | Primary player data source |
-| `0x00cd8038` | DAT_00cd8038 | Context object pointer | ❌ TESTED, FAILED | Chain breaks at +0x18c |
-| `0x00cd8048` | DAT_00cd8048 | Player manager | ⚠️ STATIC ONLY | Contains player profile, not live data |
-| `0x00cd7fdc` | DAT_00cd7fdc | Game state pointer | ⚠️ NOT TESTED | Potentially useful |
-| `0x00cd88f0` | DAT_00cd88f0 | Frame time float | ⚠️ OBSERVED | Used in FUN_0045849c |
-| `0x00cd8240` | DAT_00cd8240 | Unknown vector | ⚠️ NOT TESTED | Copied to arrays in FUN_00789849 |
-| `0x00cfcc40` | DAT_00cfcc40 | Entity table (64 entries) | ⚠️ NOT TESTED | Used in FUN_0079adca |
+| `0x00cd7f20` | DAT_00cd7f20 | Base for creature/controller array |  WORKING | Primary player data source |
+| `0x00cd8038` | DAT_00cd8038 | Context object pointer |  TESTED, FAILED | Chain breaks at +0x18c |
+| `0x00cd8048` | DAT_00cd8048 | Player manager |  STATIC ONLY | Contains player profile, not live data |
+| `0x00cd7fdc` | DAT_00cd7fdc | Game state pointer |  NOT TESTED | Potentially useful |
+| `0x00cd88f0` | DAT_00cd88f0 | Frame time float |  OBSERVED | Used in FUN_0045849c |
+| `0x00cd8240` | DAT_00cd8240 | Unknown vector |  NOT TESTED | Copied to arrays in FUN_00789849 |
+| `0x00cfcc40` | DAT_00cfcc40 | Entity table (64 entries) |  NOT TESTED | Used in FUN_0079adca |
 
 ### Access Pattern for Player Controller
 
@@ -307,14 +307,14 @@ All heap pointers should be in range `0x04000000 - 0x10000000`. Values outside t
 
 **CRITICAL**: This is a **Player Controller**, NOT the player entity. It contains input state and team affiliation but NOT world position.
 
-### ✅ Confirmed Working Offsets
+###  Confirmed Working Offsets
 
 | Offset | Type | Name | Values | Behavior | Status |
 |--------|------|------|--------|----------|--------|
-| **+0x1CA0** | BYTE | TeamID | 0, 1, 2 | 0=Neutral, 1=Good, 2=Evil | ✅ CONFIRMED |
-| **+0x1C90** | DWORD* | StatePointer | Pointer | Points to state struct | ✅ CONFIRMED |
+| **+0x1CA0** | BYTE | TeamID | 0, 1, 2 | 0=Neutral, 1=Good, 2=Evil |  CONFIRMED |
+| **+0x1C90** | DWORD* | StatePointer | Pointer | Points to state struct |  CONFIRMED |
 
-### ✅ Input/Movement Vectors (Working)
+###  Input/Movement Vectors (Working)
 
 | Offset | Type | Name | Range | Behavior |
 |--------|------|------|-------|----------|
@@ -322,7 +322,7 @@ All heap pointers should be in range `0x04000000 - 0x10000000`. Values outside t
 | +0xA4 | float | InputForwardBack | -1.0 to +1.0 | S key = -1, W key = +1 |
 | +0xA8 | float | InputStrafe | -1.0 to +1.0 | Strafing direction vector |
 
-### ⚠️ Camera/Look Direction (Changes on mouse movement)
+###  Camera/Look Direction (Changes on mouse movement)
 
 | Offset | Type | Name | Behavior |
 |--------|------|------|----------|
@@ -334,7 +334,7 @@ All heap pointers should be in range `0x04000000 - 0x10000000`. Values outside t
 | +0xD8 | float | CameraZ | Changes ONLY on mouse movement |
 | +0xE0 | float | AnimBreathing | Oscillates with character breathing animation |
 
-### ❌ Tested But NOT Position Data
+###  Tested But NOT Position Data
 
 **Why +0xC0/C4/C8 are NOT position**:
 
@@ -357,7 +357,7 @@ All heap pointers should be in range `0x04000000 - 0x10000000`. Values outside t
 
 ## 6. All Pointer Chains Attempted
 
-### Chain 1: Direct Controller Offsets ❌
+### Chain 1: Direct Controller Offsets 
 
 ```
 Controller + 0x40/44/48  → Static values (0.0, 0.0, 0.0)
@@ -369,7 +369,7 @@ Controller + 0x60/64/68  → Static values
 
 ---
 
-### Chain 2: Via +0x124 (from FUN_007cd0c1 pattern) ❌
+### Chain 2: Via +0x124 (from FUN_007cd0c1 pattern) 
 
 **Hypothesis**: `[controller + 0x10] → [+0x124] → +0x40/44/48`
 
@@ -382,7 +382,7 @@ DWORD step1 = *(DWORD*)(controller + 0x10);   // Returns 0x218C (not a pointer!)
 
 ---
 
-### Chain 3: Via +0x080 ❌
+### Chain 3: Via +0x080 
 
 **Hypothesis**: `[controller + 0x080] → [+0x10] → [+0x124] → +0x40/44/48`
 
@@ -396,7 +396,7 @@ DWORD ptr2 = *(DWORD*)(ptr1 + 0x10);          // Returns small value, not pointe
 
 ---
 
-### Chain 4: Via +0x084 ❌
+### Chain 4: Via +0x084 
 
 **Hypothesis**: `[controller + 0x084] → [+0x10] → [+0x124] → +0x40/44/48`
 
@@ -404,7 +404,7 @@ DWORD ptr2 = *(DWORD*)(ptr1 + 0x10);          // Returns small value, not pointe
 
 ---
 
-### Chain 5: Via +0x130 ❌
+### Chain 5: Via +0x130 
 
 **Hypothesis**: `[controller + 0x130] → +0x40/44/48`
 
@@ -417,7 +417,7 @@ float x = *(float*)(ptr + 0x40);              // Static value, doesn't change on
 
 ---
 
-### Chain 6: DAT_00cd8038 Context Chain ❌
+### Chain 6: DAT_00cd8038 Context Chain 
 
 **Hypothesis** (from FUN_0079ce88):
 ```
@@ -436,7 +436,7 @@ DWORD controller = *(DWORD*)(context + 0x18c); // Crashes or returns 0
 
 ---
 
-### Chain 7: Deep Scan 0x200-0x5FC ❌
+### Chain 7: Deep Scan 0x200-0x5FC 
 
 **Hypothesis**: Position might be at a deeper offset
 
@@ -448,7 +448,7 @@ DWORD controller = *(DWORD*)(context + 0x18c); // Crashes or returns 0
 
 ## 7. Failed Position Approaches
 
-### Approach 1: Direct Offsets +0x40/44/48 ❌
+### Approach 1: Direct Offsets +0x40/44/48 
 
 **Hypothesis**: Standard position offset pattern from other games
 
@@ -470,7 +470,7 @@ float posZ = SafeReadFLOAT(controller + 0x48);
 
 ---
 
-### Approach 2: Transform Pointer at +0x124 ❌
+### Approach 2: Transform Pointer at +0x124 
 
 **Hypothesis**: Based on FUN_007cd0c1 pattern: `[entity+0x10] → [+0x124] → +0x40/44/48`
 
@@ -491,7 +491,7 @@ DWORD transform = SafeReadDWORD(controller + 0x124);
 
 ---
 
-### Approach 3: Nested +0x10 Chain ❌
+### Approach 3: Nested +0x10 Chain 
 
 **Hypothesis**: Follow the exact pattern from decompiled code
 
@@ -512,7 +512,7 @@ DWORD step1 = SafeReadDWORD(controller + 0x10);  // = 0x218C
 
 ---
 
-### Approach 4: Via +0x080 Pointer ❌
+### Approach 4: Via +0x080 Pointer 
 
 **Hypothesis**: +0x080 might point to entity with position
 
@@ -531,7 +531,7 @@ DWORD ptr2 = SafeReadDWORD(ptr1 + 0x10);         // Invalid
 
 ---
 
-### Approach 5: Via +0x084 Pointer ❌
+### Approach 5: Via +0x084 Pointer 
 
 **Hypothesis**: Alternative pointer field
 
@@ -539,7 +539,7 @@ DWORD ptr2 = SafeReadDWORD(ptr1 + 0x10);         // Invalid
 
 ---
 
-### Approach 6: +0x130 Direct Read ❌
+### Approach 6: +0x130 Direct Read 
 
 **Hypothesis**: +0x130 might contain position directly or via pointer
 
@@ -560,7 +560,7 @@ float z = SafeReadFLOAT(ptr + 0x48);
 
 ---
 
-### Approach 7: DAT_00cd8038 Context ❌
+### Approach 7: DAT_00cd8038 Context 
 
 **Hypothesis**: Use FUN_0079ce88 pattern to get entity from context
 
@@ -583,7 +583,7 @@ if (context != 0) {
 
 ---
 
-### Approach 8: Deep Offset Scan (0x200-0x5FC) ❌
+### Approach 8: Deep Offset Scan (0x200-0x5FC) 
 
 **Hypothesis**: Position might be at unusual deep offset
 
@@ -610,7 +610,7 @@ for (int offset = 0x200; offset <= 0x5FC; offset += 4) {
 
 ---
 
-### Approach 9: +0xC0/C4/C8 Analysis ❌
+### Approach 9: +0xC0/C4/C8 Analysis 
 
 **Hypothesis**: These changing values might be position
 
@@ -731,7 +731,7 @@ void FUN_0079adca(void) {
 
 **Potential**: DAT_00cfcc40 might be an alternative way to find entities
 
-**Status**: ⚠️ NOT TESTED
+**Status**:  NOT TESTED
 
 ---
 
@@ -828,21 +828,21 @@ void RenderText(ID3DXFont* font, int x, int y, DWORD color, const char* text) {
 
 | Feature | Status | Implementation |
 |---------|--------|----------------|
-| Frame counter | ✅ | Increments each EndScene call |
-| Creature pointer | ✅ | `[[0x00cd7f20] + 0x64]` |
-| Team ID | ✅ | `[creature + 0x1CA0]` as BYTE |
-| Team color coding | ✅ | Green=Good, Red=Evil, White=Neutral |
-| Input vectors | ✅ | `[creature + 0xA0/A4/A8]` |
-| Velocity display | ✅ | `[creature + 0xC0/C4/C8]` |
-| Camera direction | ✅ | `[creature + 0xD0/D4/D8]` |
+| Frame counter |  | Increments each EndScene call |
+| Creature pointer |  | `[[0x00cd7f20] + 0x64]` |
+| Team ID |  | `[creature + 0x1CA0]` as BYTE |
+| Team color coding |  | Green=Good, Red=Evil, White=Neutral |
+| Input vectors |  | `[creature + 0xA0/A4/A8]` |
+| Velocity display |  | `[creature + 0xC0/C4/C8]` |
+| Camera direction |  | `[creature + 0xD0/D4/D8]` |
 
 ### Not Working
 
 | Feature | Status | Reason |
 |---------|--------|--------|
-| World Position | ❌ | Not found in controller structure |
-| Health/Mana | ⚠️ | Not attempted (blocked by position) |
-| Other entities | ⚠️ | Only local player controller found |
+| World Position |  | Not found in controller structure |
+| Health/Mana |  | Not attempted (blocked by position) |
+| Other entities |  | Only local player controller found |
 
 ---
 
@@ -913,7 +913,7 @@ Velocity/direction values have:
 
 ## 12. Unsolved Problems
 
-### Problem 1: Player World Position ❌
+### Problem 1: Player World Position 
 
 **Status**: NOT FOUND after 9+ approaches
 
@@ -1010,12 +1010,12 @@ for (int i = 0; i < 64; i++) {
 
 | Approach | Why It Failed | Don't Retry |
 |----------|---------------|-------------|
-| Direct offsets +0x40-0x68 | Controller doesn't have position | ❌ |
-| +0x124 as pointer | It's literal value 1 | ❌ |
-| +0x10 chain | Returns 0x218C, not pointer | ❌ |
-| DAT_00cd8038 context | Null during gameplay | ❌ |
-| Deep scan 0x200-0x5FC | No position-like values | ❌ |
-| +0xC0/C4/C8 as position | Changes on mouse movement | ❌ |
+| Direct offsets +0x40-0x68 | Controller doesn't have position |  |
+| +0x124 as pointer | It's literal value 1 |  |
+| +0x10 chain | Returns 0x218C, not pointer |  |
+| DAT_00cd8038 context | Null during gameplay |  |
+| Deep scan 0x200-0x5FC | No position-like values |  |
+| +0xC0/C4/C8 as position | Changes on mouse movement |  |
 
 ---
 
@@ -1032,10 +1032,10 @@ Copy and paste this prompt to quickly understand the project:
 I'm working on a D3D9 debug overlay for LOTR Conquest (ConquestLLC.exe, 32-bit x86, no ASLR).
 
 **Current State**:
-- ✅ D3D9 EndScene hook works
-- ✅ Team ID at `[[0x00cd7f20] + 0x64] + 0x1CA0` (BYTE: 0=Neutral, 1=Good, 2=Evil)
-- ✅ Input vectors at +0xA0/A4/A8
-- ❌ World position NOT FOUND
+-  D3D9 EndScene hook works
+-  Team ID at `[[0x00cd7f20] + 0x64] + 0x1CA0` (BYTE: 0=Neutral, 1=Good, 2=Evil)
+-  Input vectors at +0xA0/A4/A8
+-  World position NOT FOUND
 
 **Critical Insight**: The structure at `[[0x00cd7f20] + 0x64]` is a **Player Controller** (input/team), NOT the entity with position.
 
