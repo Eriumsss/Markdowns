@@ -249,9 +249,7 @@ Level JSON mining	~25,000	| Complete
 
 # The 7-char brute force alone found 444 hash collisions (gibberish strings that happen to hash to target values) but 0  real event names - demonstrating how unlikely it is that real names are ≤7 characters.
 
-
-
-**7-char results**: 94.9 billion patterns, 444 hash collisions, 0 real matches
+#7-char results**: 94.9 billion patterns, 444 hash collisions, 0 real matches
 
 #### 4. Level JSON Mining
 
