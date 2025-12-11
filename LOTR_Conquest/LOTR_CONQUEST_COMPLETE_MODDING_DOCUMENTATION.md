@@ -1551,9 +1551,6 @@ local_offset = R_sp_inv × offset
                 0.765 + 16.681 + 0,
                 2.789]
              = [-1.085, 17.446, 2.789]
-
-Wait, this doesn't match the actual Transform...
-Let me recalculate with correct formula...
 ```
 
 **Note**: The exact calculation requires careful matrix operations. See implementation code for verified calculations.
@@ -5943,4 +5940,5 @@ Transform_rotation = WorldTransform_rotation × R_sp^(-1)
 **Last Updated**: November 3, 2024
 **Version**: 1.0
 **Tool Version**: ZeroEnginePrototype.exe (1.1 MB)
+
 
