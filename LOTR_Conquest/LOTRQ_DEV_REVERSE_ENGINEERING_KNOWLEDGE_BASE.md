@@ -117,7 +117,7 @@ A **DirectX 9 debug overlay DLL** that hooks into `ConquestLLC.exe` (Lord of the
 
 ```bash
 # Build the overlay DLL
-cd C:\Users\Yusuf\Desktop\Code\ConquestConsole\DebugOverlay\build
+cd C:\Users\user\Desktop\Code\ConquestConsole\DebugOverlay\build
 msbuild DebugOverlay.sln /p:Configuration=Release
 
 # Output: DebugOverlay\build\Release\d3d9.dll
@@ -1111,7 +1111,7 @@ Controller offsets:
 
 ```bash
 # Full rebuild
-cd C:\Users\Yusuf\Desktop\Code\ConquestConsole\DebugOverlay\build
+cd C:\Users\user\Desktop\Code\ConquestConsole\DebugOverlay\build
 msbuild DebugOverlay.sln /p:Configuration=Release /t:Rebuild
 
 # Quick build
@@ -1717,7 +1717,7 @@ fnv.exe -p "sfx_" 0x58A75C28
 
 ```batch
 # Build overlay with audio hooks
-cd C:\Users\Yusuf\Desktop\Code\ConquestConsole\DebugOverlay
+cd C:\Users\user\Desktop\Code\ConquestConsole\DebugOverlay
 cmake --build build --config Release
 
 # Output: DebugOverlay/build/bin/Release/DebugOverlay.dll
