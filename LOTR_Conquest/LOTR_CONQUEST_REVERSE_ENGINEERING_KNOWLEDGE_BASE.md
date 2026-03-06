@@ -63,7 +63,7 @@ ConquestLLC.exe
 
 ### Build Environment
 ```bash
-cd C:\Users\Yusuf\Desktop\Code\ConquestConsole\DebugOverlay\build
+cd C:\Users\user\Desktop\Code\ConquestConsole\DebugOverlay\build
 msbuild DebugOverlay.sln /p:Configuration=Release
 ```
 
@@ -546,7 +546,7 @@ You are continuing reverse engineering work on LOTR Conquest (ConquestLLC.exe) d
 
 **Build Command:**
 ```bash
-cd C:\Users\Yusuf\Desktop\Code\ConquestConsole\DebugOverlay\build
+cd C:\Users\user\Desktop\Code\ConquestConsole\DebugOverlay\build
 msbuild DebugOverlay.sln /p:Configuration=Release
 ```
 
